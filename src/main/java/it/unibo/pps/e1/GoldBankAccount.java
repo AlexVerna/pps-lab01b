@@ -1,0 +1,32 @@
+package it.unibo.pps.e1;
+
+public class GoldBankAccount implements BankAccount {
+
+    private final int MAX_OVERDRAFT = -500;
+    private final BankAccount base;
+
+    public GoldBankAccount(final BankAccount base) {
+        this.base = base;
+    }
+
+    @Override
+    public int getBalance() {
+        return this.base.getBalance();
+    }
+
+    @Override
+    public void deposit(int amount) {
+        this.base.deposit(amount);
+    }
+
+    @Override
+    public void withdraw(int amount) {
+        if (canWithdraw(amount)) {
+            base.withdraw(amount);
+        }
+    }
+
+    private boolean canWithdraw(int amount) {
+        return this.getBalance() - amount >= MAX_OVERDRAFT;
+    }
+}

@@ -4,7 +4,7 @@ public class SilverBankAccount implements BankAccount {
 
     private final BankAccount base;
 
-    public SilverBankAccount(BankAccount base) {
+    public SilverBankAccount(final BankAccount base) {
         this.base = base;
     }
 
